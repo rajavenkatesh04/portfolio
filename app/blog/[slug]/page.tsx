@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getPost, getPostSlugs } from "@/lib/posts";
 import { getProject } from "@/lib/projects";
 import { formatDate } from "@/lib/format";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -51,12 +52,13 @@ export default async function BlogPost({ params }: Params) {
   return (
     // Centered reading column capped at ~700px for comfortable line length.
     <article className="mx-auto w-full px-5 py-14 sm:py-20" style={{ maxWidth: "calc(700px + 2.5rem)" }}>
-      <Link
-        href="/blog"
-        className="text-sm text-muted transition-colors hover:text-foreground"
-      >
-        ← All posts
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Blog", href: "/blog" },
+          { label: post.title },
+        ]}
+      />
 
       <header className="mt-6">
         <div className="flex items-center gap-3 text-sm text-muted">

@@ -156,7 +156,7 @@ export default function Home() {
               </p>
             </div>
             <div className="text-muted sm:text-right">
-              <p>CGPA 7.87 / 10</p>
+              <p>CGPA 7.98 / 10</p>
               <p className="text-sm">2022 – 2026</p>
             </div>
           </div>

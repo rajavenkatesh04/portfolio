@@ -3,7 +3,7 @@ import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import SiteFooter from "@/app/components/SiteFooter";
 
 // Sans for UI/body, Fraunces serif for display + reading, mono for code.
 // Variable fonts, self-hosted by next/font => no layout shift, no Google calls.
@@ -84,7 +84,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-background text-foreground">
         <Header />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );

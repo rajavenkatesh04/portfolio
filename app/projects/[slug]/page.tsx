@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { projects, getProject } from "@/lib/projects";
 import { getAllPosts } from "@/lib/posts";
 import Reveal from "@/app/components/Reveal";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -43,12 +44,13 @@ export default async function ProjectPage({ params }: Params) {
   return (
     <article className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
       <Reveal>
-        <Link
-          href="/#projects"
-          className="text-sm text-muted transition-colors hover:text-foreground"
-        >
-          ← Back to projects
-        </Link>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Projects", href: "/#projects" },
+            { label: project.title },
+          ]}
+        />
 
         <h1 className="mt-6 font-serif text-3xl font-semibold tracking-tight sm:text-5xl">
           {project.title}
@@ -58,7 +60,7 @@ export default async function ProjectPage({ params }: Params) {
 
       {/* Screenshot. Drop your image at public{project.screenshot}. */}
       <Reveal delay={60}>
-        <div className="relative mt-10 aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-surface-2">
+        <div className="relative mt-10 aspect-16/10 overflow-hidden rounded-2xl border border-border bg-surface-2">
           <Image
             src={project.screenshot}
             alt={`${project.title} screenshot`}

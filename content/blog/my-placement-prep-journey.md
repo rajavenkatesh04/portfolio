@@ -2,7 +2,7 @@
 title: "My placement prep journey: 20 days, three tracks"
 date: "2026-06-10"
 excerpt: "Running a structured DSA plan, daily aptitude practice, and an AWS certification in parallel during final year — the routine, the grind, and what I'd do differently."
-coverImage: "/blog/prep-journey.png"
+coverImage: "/blog/prep-journey.jpg"
 ---
 
 > Placeholder draft — this is the shape of the story; I'll swap in the real details and dates later.

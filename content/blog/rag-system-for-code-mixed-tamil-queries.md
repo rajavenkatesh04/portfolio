@@ -2,6 +2,7 @@
 title: "Building a RAG system that understands code-mixed Tamil"
 date: "2026-05-28"
 excerpt: "How I built a disaster-relief chatbot that answers questions in Tamil, English, and Tanglish — grounded in official government documents, not the model's imagination."
+coverImage: "/blog/rag.jpg"
 relatedProject: "code-mixed-rag-disaster-relief-chatbot"
 ---
 

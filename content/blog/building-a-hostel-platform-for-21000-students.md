@@ -2,7 +2,7 @@
 title: "Building a hostel platform for 21,000+ students"
 date: "2026-04-15"
 excerpt: "How a simple idea — help incoming freshmen actually see their dorm options before move-in — turned into a platform serving 21,000+ students and 118,000+ page views."
-coverImage: "/blog/hostels.png"
+coverImage: "/blog/hostels.jpg"
 relatedProject: "hostels-selection-platform"
 ---
 

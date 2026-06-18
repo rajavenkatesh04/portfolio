@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/format";
 import Reveal from "@/app/components/Reveal";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -22,10 +23,10 @@ export default function BlogIndex() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
       <Reveal>
-        <p className="text-sm font-medium uppercase tracking-widest text-accent">
-          Blog
-        </p>
-        <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Blog" }]}
+        />
+        <h1 className="mt-5 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
           Writing
         </h1>
         <p className="mt-4 max-w-xl text-muted">
