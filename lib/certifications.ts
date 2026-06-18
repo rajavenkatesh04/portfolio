@@ -42,6 +42,13 @@ export const certifications: Certification[] = [
     // Add credentialUrl / pdf once earned.
   },
   {
+    title: "Github Foundations (GH-900)",
+    issuer: "Github",
+    date: "Expected 2026",
+    status: "in-progress",
+    // Add credentialUrl / pdf once earned.
+  },
+  {
     title: "Programming in Java",
     issuer: "NPTEL",
     date: "2024",

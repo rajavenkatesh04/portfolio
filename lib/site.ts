@@ -15,7 +15,7 @@ export const site = {
   role: "Full-stack & AI Developer",
   // The one-line positioning statement shown in the hero.
   tagline:
-    "Full-stack & AI developer — I build web apps people actually use, from a multilingual RAG system to platforms serving 20,000+ users.",
+    "I build web apps people actually use, from a multilingual RAG system to platforms serving 20,000+ users.",
   description:
     "Guthula Raja Venkatesh — final-year CS student and full-stack & AI developer. I build web apps people actually use, from a multilingual RAG system to high-traffic platforms.",
   // Canonical production URL — used for Open Graph / absolute links.

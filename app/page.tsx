@@ -1,7 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 import { projects } from "@/lib/projects";
 import { certifications } from "@/lib/certifications";
+import { getAllPosts } from "@/lib/posts";
+import { formatDate } from "@/lib/format";
 import ProjectCard from "@/app/components/ProjectCard";
 import CertCard from "@/app/components/CertCard";
 import Reveal from "@/app/components/Reveal";
@@ -21,6 +24,7 @@ const secondary = projects
   .filter((p) => !p.featured)
   .slice(0, Math.max(0, 3 - featured.length));
 const previewCerts = certifications.slice(0, 3);
+const latestPost = getAllPosts()[0];
 
 // Shared section rhythm: identical horizontal frame + vertical padding so every
 // section breathes the same. Anchor offset clears the sticky header.
@@ -91,9 +95,6 @@ export default function Home() {
               View all →
             </Link>
           </div>
-          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
-            Things I&apos;ve built and shipped
-          </h2>
         </Reveal>
 
         <div className="mt-10 flex flex-col gap-5 sm:mt-12">
@@ -133,27 +134,28 @@ export default function Home() {
         <Reveal>
           <SectionLabel>Skills</SectionLabel>
         </Reveal>
-        <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
+        {/* Spec-sheet layout: category label, then the toolset as light pills. */}
+        <dl className="mt-8 border-t border-border sm:mt-10">
           {skillGroups.map((group, i) => (
             <Reveal key={group.category} delay={i * 50}>
-              <div className="border-t border-border pt-4">
-                <h3 className="text-sm font-medium uppercase tracking-wider text-muted">
+              <div className="grid grid-cols-1 gap-3 border-b border-border py-6 sm:grid-cols-[11rem_1fr] sm:gap-8">
+                <dt className="font-serif text-lg font-medium tracking-tight text-accent">
                   {group.category}
-                </h3>
-                <ul className="mt-3 flex flex-wrap gap-2">
+                </dt>
+                <dd className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <li
+                    <span
                       key={item}
-                      className="rounded-md bg-surface-2 px-3 py-1.5 text-sm"
+                      className="rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm text-foreground transition-colors hover:border-accent/60 hover:text-accent"
                     >
                       {item}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </dd>
               </div>
             </Reveal>
           ))}
-        </div>
+        </dl>
       </section>
 
       {/* ===================== EDUCATION ===================== */}
@@ -205,6 +207,62 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ===================== FROM THE BLOG ===================== */}
+      {latestPost && (
+        <section id="writing" className={SECTION}>
+          <Reveal>
+            <div className="flex items-end justify-between gap-4">
+              <SectionLabel>From the blog</SectionLabel>
+              <Link
+                href="/blog"
+                className="text-sm font-medium text-muted transition-colors hover:text-accent"
+              >
+                View all →
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <Link
+              href={`/blog/${latestPost.slug}`}
+              className="group mt-8 flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.18)] sm:flex-row"
+            >
+              <div className="relative aspect-[16/9] shrink-0 bg-surface-2 sm:aspect-auto sm:w-2/5">
+                {latestPost.coverImage && (
+                  <Image
+                    src={latestPost.coverImage}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                )}
+              </div>
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted">
+                  <time dateTime={latestPost.date}>
+                    {formatDate(latestPost.date)}
+                  </time>
+                  <span aria-hidden className="text-accent/50">
+                    ·
+                  </span>
+                  <span>{latestPost.readingTime} min read</span>
+                </div>
+                <h3 className="mt-3 font-serif text-2xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-accent">
+                  {latestPost.title}
+                </h3>
+                <p className="mt-2.5 line-clamp-3 leading-relaxed text-muted">
+                  {latestPost.excerpt}
+                </p>
+                <span className="mt-auto pt-6 text-sm font-medium text-accent">
+                  Read post →
+                </span>
+              </div>
+            </Link>
+          </Reveal>
+        </section>
+      )}
     </>
   );
 }
