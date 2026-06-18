@@ -15,9 +15,12 @@ const skillGroups: { category: string; items: string[] }[] = [
   { category: "Tools", items: ["Git", "Docker", "AWS", "GCP", "Vercel"] },
 ];
 
-// Flagship first, then the rest.
+// Home shows a curated preview (max 3); the full lists live behind "View all".
 const featured = projects.filter((p) => p.featured);
-const secondary = projects.filter((p) => !p.featured);
+const secondary = projects
+  .filter((p) => !p.featured)
+  .slice(0, Math.max(0, 3 - featured.length));
+const previewCerts = certifications.slice(0, 3);
 
 // Shared section rhythm: identical horizontal frame + vertical padding so every
 // section breathes the same. Anchor offset clears the sticky header.
@@ -195,7 +198,7 @@ export default function Home() {
           </div>
         </Reveal>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((cert, i) => (
+          {previewCerts.map((cert, i) => (
             <Reveal key={cert.title} delay={i * 60} className="h-full">
               <CertCard cert={cert} />
             </Reveal>

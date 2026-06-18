@@ -153,6 +153,30 @@ body {
 }
 
 /* ============================================================================
+ * MOBILE MENU OVERLAY
+ * ========================================================================== */
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes menuItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================================
  * PROSE — blog reading column
  * Centered ~700px column, generous line-height, serif body for readability.
  * Accent reserved for links only.
