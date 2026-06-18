@@ -47,8 +47,8 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-7 md:flex">
-          <ul className="flex items-center gap-7 text-sm">
+        <div className="hidden items-center gap-6 lg:flex">
+          <ul className="flex items-center gap-6 text-sm">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -65,7 +65,7 @@ export default function Header() {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -96,7 +96,7 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="border-t border-border bg-background md:hidden">
+        <div className="border-t border-border bg-background lg:hidden">
           <ul className="mx-auto flex max-w-5xl flex-col px-5 py-2 sm:px-8">
             {navItems.map((item) => (
               <li key={item.href}>

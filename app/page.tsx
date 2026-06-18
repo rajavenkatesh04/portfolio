@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
 import { projects } from "@/lib/projects";
+import { certifications } from "@/lib/certifications";
 import ProjectCard from "@/app/components/ProjectCard";
+import CertCard from "@/app/components/CertCard";
 import Reveal from "@/app/components/Reveal";
 
 // Skills grouped by category — compact, no progress bars. Edit freely.
@@ -76,7 +79,15 @@ export default function Home() {
       {/* ===================== PROJECTS ===================== */}
       <section id="projects" className={SECTION}>
         <Reveal>
-          <SectionLabel>Projects</SectionLabel>
+          <div className="flex items-end justify-between gap-4">
+            <SectionLabel>Projects</SectionLabel>
+            <Link
+              href="/projects"
+              className="text-sm font-medium text-muted transition-colors hover:text-accent"
+            >
+              View all →
+            </Link>
+          </div>
           <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
             Things I&apos;ve built and shipped
           </h2>
@@ -146,21 +157,50 @@ export default function Home() {
       <section id="education" className={SECTION}>
         <Reveal>
           <SectionLabel>Education</SectionLabel>
-          <div className="mt-8 flex flex-col justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-baseline">
-            <div>
-              <h3 className="text-lg font-semibold">
-                B.Tech, Computer Science &amp; Engineering
-              </h3>
-              <p className="mt-1 text-muted">
-                SRM Institute of Science and Technology, Chennai
-              </p>
-            </div>
-            <div className="text-muted sm:text-right">
-              <p>CGPA 7.98 / 10</p>
-              <p className="text-sm">2022 – 2026</p>
+          <div className="mt-8 rounded-2xl border border-border bg-surface p-6 sm:p-8">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">
+                  B.Tech, Computer Science &amp; Engineering
+                </h3>
+                <p className="mt-1.5 text-muted">
+                  SRM Institute of Science and Technology, Chennai
+                </p>
+                <p className="mt-3 text-sm text-muted">2022 – 2026</p>
+              </div>
+              <div className="shrink-0 self-start rounded-xl bg-surface-2 px-6 py-4 text-center sm:self-auto sm:min-w-[7rem]">
+                <p className="font-serif text-3xl font-semibold tracking-tight">
+                  7.98
+                </p>
+                <p className="mt-0.5 text-xs uppercase tracking-wider text-muted">
+                  CGPA / 10
+                </p>
+              </div>
             </div>
           </div>
         </Reveal>
+      </section>
+
+      {/* ===================== CERTIFICATIONS ===================== */}
+      <section id="certifications" className={SECTION}>
+        <Reveal>
+          <div className="flex items-end justify-between gap-4">
+            <SectionLabel>Certifications</SectionLabel>
+            <Link
+              href="/certifications"
+              className="text-sm font-medium text-muted transition-colors hover:text-accent"
+            >
+              View all →
+            </Link>
+          </div>
+        </Reveal>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {certifications.map((cert, i) => (
+            <Reveal key={cert.title} delay={i * 60} className="h-full">
+              <CertCard cert={cert} />
+            </Reveal>
+          ))}
+        </div>
       </section>
     </>
   );

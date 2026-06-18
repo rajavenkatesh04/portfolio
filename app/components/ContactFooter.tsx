@@ -33,12 +33,12 @@ export default function ContactFooter() {
         {/* Signature element: the email, large and unmissable. */}
         <a
           href={`mailto:${site.email}`}
-          className="group mt-10 inline-flex items-baseline gap-3 font-serif text-3xl font-semibold tracking-tight text-foreground transition-colors hover:text-accent sm:text-5xl"
+          className="group mt-10 inline-flex items-baseline gap-2 font-serif text-2xl font-semibold tracking-tight text-foreground transition-colors hover:text-accent sm:gap-3 sm:text-5xl"
         >
           <span className="break-all underline decoration-border decoration-1 underline-offset-[6px] transition-colors group-hover:decoration-accent">
             {site.email}
           </span>
-          <span aria-hidden className="text-accent text-2xl sm:text-3xl">
+          <span aria-hidden className="shrink-0 text-xl text-accent sm:text-3xl">
             ↗
           </span>
         </a>
@@ -67,11 +67,10 @@ export default function ContactFooter() {
         </div>
 
         {/* Bottom bar. */}
-        <div className="mt-16 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 border-t border-border pt-6 text-sm text-muted">
           <p>
             © {new Date().getFullYear()} {site.name}.
           </p>
-          <p>Designed &amp; built with Next.js.</p>
         </div>
       </div>
     </footer>

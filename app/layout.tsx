@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import Header from "@/app/components/Header";
 import SiteFooter from "@/app/components/SiteFooter";
+import { Analytics } from '@vercel/analytics/next';
 
 // Sans for UI/body, Fraunces serif for display + reading, mono for code.
 // Variable fonts, self-hosted by next/font => no layout shift, no Google calls.
@@ -85,6 +86,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );

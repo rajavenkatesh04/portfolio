@@ -30,7 +30,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-foreground"
+                  className="transition-colors hover:text-accent"
                 >
                   {item.label}
                 </Link>
@@ -43,7 +43,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
                 </span>
               )}
               {!isLast && (
-                <span aria-hidden className="text-border">
+                <span aria-hidden className="text-accent/50">
                   /
                 </span>
               )}

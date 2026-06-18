@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: Params) {
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
-            { label: "Projects", href: "/#projects" },
+            { label: "Projects", href: "/projects" },
             { label: project.title },
           ]}
         />

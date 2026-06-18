@@ -9,7 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     { url: base, priority: 1 },
+    { url: `${base}/projects`, priority: 0.8 },
     { url: `${base}/blog`, priority: 0.8 },
+    { url: `${base}/certifications`, priority: 0.6 },
   ];
 
   const projectRoutes = projects.map((p) => ({

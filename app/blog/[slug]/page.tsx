@@ -51,7 +51,7 @@ export default async function BlogPost({ params }: Params) {
 
   return (
     // Centered reading column capped at ~700px for comfortable line length.
-    <article className="mx-auto w-full px-5 py-14 sm:py-20" style={{ maxWidth: "calc(700px + 2.5rem)" }}>
+    <article className="mx-auto w-full px-5 py-16 sm:py-24" style={{ maxWidth: "calc(700px + 2.5rem)" }}>
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -60,20 +60,25 @@ export default async function BlogPost({ params }: Params) {
         ]}
       />
 
-      <header className="mt-6">
-        <div className="flex items-center gap-3 text-sm text-muted">
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          <span aria-hidden>·</span>
-          <span>{post.readingTime} min read</span>
-        </div>
-        <h1 className="mt-3 font-serif text-3xl font-semibold leading-tight tracking-tight sm:text-[2.75rem]">
+      {/* Title leads; meta sits below a divider so the header can breathe. */}
+      <header className="mt-10">
+        <h1 className="font-serif text-4xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-4 text-lg text-muted">{post.excerpt}</p>
+        <p className="mt-6 text-xl leading-relaxed text-muted">
+          {post.excerpt}
+        </p>
+        <div className="mt-8 flex items-center gap-3 border-t border-border pt-5 text-sm text-muted">
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span aria-hidden className="text-accent/50">
+            ·
+          </span>
+          <span>{post.readingTime} min read</span>
+        </div>
       </header>
 
       {post.coverImage && (
-        <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-surface-2">
+        <div className="relative mt-12 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-surface-2">
           <Image
             src={post.coverImage}
             alt={post.title}
@@ -108,6 +113,16 @@ export default async function BlogPost({ params }: Params) {
           <span className="ml-4 shrink-0 text-accent">View →</span>
         </Link>
       )}
+
+      {/* Back affordance so readers don't have to scroll up after a long read. */}
+      <div className="mt-16 border-t border-border pt-8">
+        <Link
+          href="/blog"
+          className="text-sm font-medium text-muted transition-colors hover:text-accent"
+        >
+          ← Back to all posts
+        </Link>
+      </div>
     </article>
   );
 }
