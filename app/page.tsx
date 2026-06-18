@@ -1,65 +1,174 @@
-import Image from "next/image";
+import Link from "next/link";
+import { site } from "@/lib/site";
+import { projects } from "@/lib/projects";
+import ProjectCard from "@/app/components/ProjectCard";
+import Reveal from "@/app/components/Reveal";
+
+// Skills grouped by category — compact, no progress bars. Edit freely.
+const skillGroups: { category: string; items: string[] }[] = [
+  { category: "Languages", items: ["Java", "JavaScript", "TypeScript", "Python", "SQL"] },
+  { category: "Frontend", items: ["React", "Next.js", "Tailwind", "Material UI"] },
+  { category: "Backend", items: ["Node.js", "Express", "REST APIs"] },
+  { category: "Data & AI", items: ["PostgreSQL", "MongoDB", "Firebase", "RAG", "LangChain", "FAISS"] },
+  { category: "Tools", items: ["Git", "Docker", "AWS", "GCP", "Vercel"] },
+];
+
+// Lead with the flagship, then the rest.
+const orderedProjects = [...projects].sort(
+  (a, b) => Number(b.featured) - Number(a.featured),
+);
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      {/* ===================== HERO ===================== */}
+      <section className="mx-auto max-w-5xl px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28">
+        <Reveal>
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">
+            {site.role}
           </p>
+          <h1 className="mt-4 font-serif text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
+            {site.name}
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+            {site.tagline}
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link
+              href="/#projects"
+              className="rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-accent-contrast transition-colors hover:bg-accent-hover"
+            >
+              View Projects
+            </Link>
+            <a
+              href={site.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border px-6 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+            >
+              Download Résumé
+            </a>
+            <a
+              href={site.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-2.5 text-sm font-medium text-muted transition-colors hover:text-foreground"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href={site.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-2.5 text-sm font-medium text-muted transition-colors hover:text-foreground"
+            >
+              LinkedIn ↗
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ===================== PROJECTS ===================== */}
+      <section
+        id="projects"
+        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
+      >
+        <Reveal>
+          <SectionLabel>Projects</SectionLabel>
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+            Things I&apos;ve built and shipped
+          </h2>
+        </Reveal>
+
+        <div className="mt-10 flex flex-col gap-6">
+          {orderedProjects.map((project, i) => (
+            <Reveal key={project.slug} delay={i * 60}>
+              <ProjectCard project={project} />
+            </Reveal>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* ===================== ABOUT ===================== */}
+      <section
+        id="about"
+        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
+      >
+        <Reveal>
+          <SectionLabel>About</SectionLabel>
+          <p className="mt-6 max-w-2xl font-serif text-2xl leading-relaxed tracking-tight sm:text-[1.75rem]">
+            I like taking an idea from a blank repo to something deployed and
+            used by real people — whether that&apos;s an AI retrieval system or a
+            high-traffic web app. I&apos;m strong in full-stack JavaScript and
+            applied AI, and I&apos;m currently looking for a software engineering
+            role where I can ship from day one.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* ===================== SKILLS ===================== */}
+      <section
+        id="skills"
+        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
+      >
+        <Reveal>
+          <SectionLabel>Skills</SectionLabel>
+        </Reveal>
+        <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
+          {skillGroups.map((group, i) => (
+            <Reveal key={group.category} delay={i * 50}>
+              <div className="border-t border-border pt-4">
+                <h3 className="text-sm font-medium uppercase tracking-wider text-muted">
+                  {group.category}
+                </h3>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-md bg-surface-2 px-3 py-1.5 text-sm"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ===================== EDUCATION ===================== */}
+      <section
+        id="education"
+        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
+      >
+        <Reveal>
+          <SectionLabel>Education</SectionLabel>
+          <div className="mt-6 flex flex-col justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-baseline">
+            <div>
+              <h3 className="text-lg font-semibold">
+                B.Tech, Computer Science &amp; Engineering
+              </h3>
+              <p className="mt-1 text-muted">
+                SRM Institute of Science and Technology, Chennai
+              </p>
+            </div>
+            <div className="text-muted sm:text-right">
+              <p>CGPA 7.87 / 10</p>
+              <p className="text-sm">2022 – 2026</p>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+    </>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-sm font-medium uppercase tracking-widest text-accent">
+      {children}
+    </p>
   );
 }
