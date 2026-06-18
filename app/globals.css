@@ -25,13 +25,14 @@
   --accent-hover: #973f22;
   --accent-contrast: #ffffff; /* text on accent fills */
 
-  /* Code-block syntax tokens (low-contrast, theme-aware). */
+  /* Code-block syntax tokens (low-contrast, theme-aware — all >= WCAG AA 4.5:1
+     against --code-bg). */
   --code-bg: #f5f3ec;
   --code-fg: #2c2a26;
-  --code-comment: #9b978c;
+  --code-comment: #6f6b61; /* was #9b978c (2.7:1) -> now ~4.6:1 */
   --code-keyword: #b5502e;
-  --code-string: #4a7c59;
-  --code-number: #8a6d3b;
+  --code-string: #3f6b4a; /* darkened for AA */
+  --code-number: #79602f; /* darkened for AA */
   --code-function: #2f5d8a;
 }
 
@@ -49,7 +50,7 @@
 
   --code-bg: #1a1916;
   --code-fg: #d8d4cb;
-  --code-comment: #6f6b61;
+  --code-comment: #8f8a7e; /* lightened so comments hit AA on dark */
   --code-keyword: #e08a6c;
   --code-string: #9bbf9f;
   --code-number: #d2b48c;

@@ -4,13 +4,17 @@ import type { Project } from "@/lib/projects";
 /**
  * Project card for the home page. Leads with impact (outcome), THEN the tech
  * stack, then links. Featured projects get extra visual prominence.
+ *
+ * Layout is `h-full` + flex-col with the links row pinned to the bottom
+ * (`mt-auto`), so cards sitting side-by-side in a grid stay equal height with
+ * aligned footers regardless of copy length.
  */
 export default function ProjectCard({ project }: { project: Project }) {
   const { featured } = project;
 
   return (
     <article
-      className={`group relative flex flex-col rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-accent/50 sm:p-8 ${
+      className={`group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.18)] sm:p-8 ${
         featured ? "sm:p-10" : ""
       }`}
     >
@@ -20,15 +24,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         </span>
       )}
 
-      <div className="flex items-baseline justify-between gap-4">
-        <h3
-          className={`font-serif font-semibold tracking-tight ${
-            featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
-          }`}
-        >
-          {project.title}
-        </h3>
-      </div>
+      <h3
+        className={`font-serif font-semibold tracking-tight ${
+          featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
+        }`}
+      >
+        {project.title}
+      </h3>
       <p className="mt-1 text-sm font-medium text-muted">{project.tagline}</p>
 
       {/* Lead with the real-world outcome. */}
@@ -52,8 +54,8 @@ export default function ProjectCard({ project }: { project: Project }) {
         ))}
       </ul>
 
-      {/* Then the links. */}
-      <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium">
+      {/* Then the links — pinned to the bottom for aligned footers. */}
+      <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-7 text-sm font-medium">
         {project.links.liveUrl && (
           <a
             href={project.links.liveUrl}

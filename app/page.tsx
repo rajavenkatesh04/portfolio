@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { site } from "@/lib/site";
 import { projects } from "@/lib/projects";
 import ProjectCard from "@/app/components/ProjectCard";
@@ -13,34 +12,39 @@ const skillGroups: { category: string; items: string[] }[] = [
   { category: "Tools", items: ["Git", "Docker", "AWS", "GCP", "Vercel"] },
 ];
 
-// Lead with the flagship, then the rest.
-const orderedProjects = [...projects].sort(
-  (a, b) => Number(b.featured) - Number(a.featured),
-);
+// Flagship first, then the rest.
+const featured = projects.filter((p) => p.featured);
+const secondary = projects.filter((p) => !p.featured);
+
+// Shared section rhythm: identical horizontal frame + vertical padding so every
+// section breathes the same. Anchor offset clears the sticky header.
+const SECTION = "mx-auto max-w-5xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24";
 
 export default function Home() {
   return (
     <>
       {/* ===================== HERO ===================== */}
-      <section className="mx-auto max-w-5xl px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28">
+      <section className="mx-auto max-w-5xl px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
         <Reveal>
-          <p className="text-sm font-medium uppercase tracking-widest text-accent">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
             {site.role}
           </p>
-          <h1 className="mt-4 font-serif text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
+          <h1 className="mt-5 font-serif text-5xl font-semibold leading-[1.04] tracking-[-0.02em] sm:text-7xl">
             {site.name}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
             {site.tagline}
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Link
-              href="/#projects"
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            {/* Plain anchor (bare hash) = native smooth scroll, no router hash
+                stacking. scroll-padding-top keeps it clear of the header. */}
+            <a
+              href="#projects"
               className="rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-accent-contrast transition-colors hover:bg-accent-hover"
             >
               View Projects
-            </Link>
+            </a>
             <a
               href={site.resumePath}
               target="_blank"
@@ -70,10 +74,7 @@ export default function Home() {
       </section>
 
       {/* ===================== PROJECTS ===================== */}
-      <section
-        id="projects"
-        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
-      >
+      <section id="projects" className={SECTION}>
         <Reveal>
           <SectionLabel>Projects</SectionLabel>
           <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -81,23 +82,29 @@ export default function Home() {
           </h2>
         </Reveal>
 
-        <div className="mt-10 flex flex-col gap-6">
-          {orderedProjects.map((project, i) => (
-            <Reveal key={project.slug} delay={i * 60}>
+        <div className="mt-10 flex flex-col gap-5 sm:mt-12">
+          {/* Flagship gets a full-width row for prominence. */}
+          {featured.map((project) => (
+            <Reveal key={project.slug}>
               <ProjectCard project={project} />
             </Reveal>
           ))}
+          {/* Secondary projects share an equal-height two-up grid. */}
+          <div className="grid gap-5 sm:grid-cols-2">
+            {secondary.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 70} className="h-full">
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===================== ABOUT ===================== */}
-      <section
-        id="about"
-        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
-      >
+      <section id="about" className={SECTION}>
         <Reveal>
           <SectionLabel>About</SectionLabel>
-          <p className="mt-6 max-w-2xl font-serif text-2xl leading-relaxed tracking-tight sm:text-[1.75rem]">
+          <p className="mt-8 max-w-2xl font-serif text-2xl leading-[1.5] tracking-[-0.01em] sm:text-[1.75rem]">
             I like taking an idea from a blank repo to something deployed and
             used by real people — whether that&apos;s an AI retrieval system or a
             high-traffic web app. I&apos;m strong in full-stack JavaScript and
@@ -108,10 +115,7 @@ export default function Home() {
       </section>
 
       {/* ===================== SKILLS ===================== */}
-      <section
-        id="skills"
-        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
-      >
+      <section id="skills" className={SECTION}>
         <Reveal>
           <SectionLabel>Skills</SectionLabel>
         </Reveal>
@@ -139,13 +143,10 @@ export default function Home() {
       </section>
 
       {/* ===================== EDUCATION ===================== */}
-      <section
-        id="education"
-        className="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8 sm:py-20"
-      >
+      <section id="education" className={SECTION}>
         <Reveal>
           <SectionLabel>Education</SectionLabel>
-          <div className="mt-6 flex flex-col justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-baseline">
+          <div className="mt-8 flex flex-col justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-baseline">
             <div>
               <h3 className="text-lg font-semibold">
                 B.Tech, Computer Science &amp; Engineering
@@ -167,7 +168,7 @@ export default function Home() {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-sm font-medium uppercase tracking-widest text-accent">
+    <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
       {children}
     </p>
   );

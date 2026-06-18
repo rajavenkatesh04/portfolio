@@ -90,6 +90,7 @@ export const projects: Project[] = [
     featured: false,
     links: { liveUrl: "https://serene-events.vercel.app/", repoUrl: "https://github.com/rajavenkatesh04/serene-events" },
     screenshot: "/projects/serene-events.png",
+    relatedPost: "building-serene-events",
   },
 ];
 

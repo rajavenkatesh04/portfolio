@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems, site } from "@/lib/site";
 import ThemeToggle from "./ThemeToggle";
@@ -11,6 +12,28 @@ import ThemeToggle from "./ThemeToggle";
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  /**
+   * Handle clicks on section links (e.g. "/#about").
+   * On the home page we scroll manually and write a SINGLE clean hash via
+   * replaceState — this avoids the App Router quirk where successive hash
+   * navigations stack fragments (e.g. /#about#projects). On other pages we let
+   * the Link navigate home to the hash normally.
+   */
+  function handleSectionClick(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    setOpen(false);
+    if (!href.startsWith("/#") || pathname !== "/") return;
+
+    const el = document.getElementById(href.slice(2));
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", href);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
@@ -30,6 +53,7 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={(e) => handleSectionClick(e, item.href)}
                   className="text-muted transition-colors hover:text-foreground"
                 >
                   {item.label}
@@ -78,7 +102,7 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleSectionClick(e, item.href)}
                   className="block py-2.5 text-muted transition-colors hover:text-foreground"
                 >
                   {item.label}
