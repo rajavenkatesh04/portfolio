@@ -77,6 +77,7 @@ export default function RootLayout({
       lang="en"
       data-theme="light"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${fraunces.variable} ${mono.variable}`}
     >
       <head>

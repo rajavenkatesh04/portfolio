@@ -1,12 +1,11 @@
 ---
-title: "Building a hostel platform for 21,000+ students"
-date: "2026-04-15"
-excerpt: "How a simple idea — help incoming freshmen actually see their dorm options before move-in — turned into a platform serving 21,000+ students and 118,000+ page views."
+title: "SRM Hostel picker platform"
+date: "2025-04-15"
+excerpt: "How a simple idea — help incoming freshmen actually choose their rooms from array of options — turned into a platform serving 22,000+ students and 118,000+ page views over an year."
 coverImage: "/blog/hostels.jpg"
 relatedProject: "hostels-selection-platform"
 ---
 
-> Placeholder draft — the structure and numbers are real, but I'll replace the prose with the full story later.
 
 Every incoming batch of students faces the same blind decision: pick a hostel before you've ever set foot on campus. The official information was scattered across PDFs, notice boards, and word of mouth. I wanted to put it all in one place — clear, searchable, and fast on a phone.
 

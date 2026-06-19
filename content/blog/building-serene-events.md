@@ -6,7 +6,6 @@ coverImage: "/blog/serene-events.jpg"
 relatedProject: "serene-events-platform"
 ---
 
-> Placeholder draft — structure and numbers are real; I'll fill in the full narrative later.
 
 Events generate a flood of small, time-sensitive interactions: messages, check-ins, status changes. Serene Events is my attempt to make all of that feel instant for attendees and legible for organisers — a platform that served **15,000+ users** across **36,000+ page views**.
 
@@ -15,12 +14,12 @@ Events generate a flood of small, time-sensitive interactions: messages, check-i
 Three things, done well:
 
 - **Real-time chat** — attendees and organisers talk in the moment, no refresh.
-- **QR-code check-in** — scan to admit; attendance updates live.
-- **Live admin dashboards** — organisers watch registrations, check-ins, and engagement update in real time.
+- **QR-code check-in** — scan to admit, view the event notice board, attendance updates live.
+- **Live admin dashboards** — organisers watch registrations, check-ins, and engagement update in real time and feedbacm submissions.
 
-It's built on [Next.js](https://nextjs.org) for the app and [Firebase](https://firebase.google.com) for real-time data sync, auth, and storage.
+It's built on [Next.js](https://nextjs.org) for the app and [Firebase](https://firebase.google.com) for real-time FCM notifications, auth, and storage.
 
-## The interesting part: real-time data
+## The interesting part: real-time notifications and notices
 
 Real-time UIs are deceptively hard. The happy path — a value changes, the screen updates — is easy. The edges are where the work is.
 
