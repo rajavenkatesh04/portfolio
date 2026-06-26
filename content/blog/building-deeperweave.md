@@ -1,8 +1,8 @@
 ---
-title: "My placement prep"
-date: "2026-06-19"
+title: "Building DeeperWeave"
+date: "2026-06-01"
 excerpt: "Grinding LeetCode, AWS CLF-C02, GH-900, AI Fundamentals, Aptitude, and more."
-coverImage: "/blog/prep-journey.jpg"
+coverImage: "/blog/deeperweave.png"
 ---
 
 The final year brings a strange kind of pressure: you're finishing a degree, building projects, and preparing for interviews all at once. I decided to stop treating prep as something I'd eventually "get to" and instead started running it like a project with a strict deadline.

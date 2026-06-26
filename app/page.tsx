@@ -121,8 +121,8 @@ export default function Home() {
           <SectionLabel>About</SectionLabel>
           <p className="mt-8 max-w-2xl font-serif text-2xl leading-[1.5] tracking-[-0.01em] sm:text-[1.75rem]">
             I like taking an idea from a blank repo to something deployed and
-            used by real people — whether that&apos;s an AI retrieval system or a
-            high-traffic web app. I&apos;m strong in full-stack JavaScript and
+            used by real people, whether that&apos;s an AI retrieval system or a
+            high-traffic web app. I&apos;m strong in full-stack web dev and
             applied AI, and I&apos;m currently looking for a software engineering
             role where I can ship from day one.
           </p>
@@ -134,28 +134,28 @@ export default function Home() {
         <Reveal>
           <SectionLabel>Skills</SectionLabel>
         </Reveal>
-        {/* Spec-sheet layout: category label, then the toolset as light pills. */}
-        <dl className="mt-8 border-t border-border sm:mt-10">
+
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group, i) => (
-            <Reveal key={group.category} delay={i * 50}>
-              <div className="grid grid-cols-1 gap-3 border-b border-border py-6 sm:grid-cols-[11rem_1fr] sm:gap-8">
-                <dt className="font-serif text-lg font-medium tracking-tight text-accent">
-                  {group.category}
-                </dt>
-                <dd className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm text-foreground transition-colors hover:border-accent/60 hover:text-accent"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </dd>
-              </div>
-            </Reveal>
+              <Reveal key={group.category} delay={i * 50} className="h-full">
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 sm:p-8 transition-colors hover:border-accent/40">
+                  <h3 className="font-serif text-xl font-semibold tracking-tight text-foreground">
+                    {group.category}
+                  </h3>
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {group.items.map((item) => (
+                        <span
+                            key={item}
+                            className="rounded-lg bg-surface-2 px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:text-foreground"
+                        >
+                {item}
+              </span>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
           ))}
-        </dl>
+        </div>
       </section>
 
       {/* ===================== EDUCATION ===================== */}

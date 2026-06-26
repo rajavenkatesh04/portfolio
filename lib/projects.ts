@@ -92,6 +92,25 @@ export const projects: Project[] = [
     screenshot: "/projects/serene-events.png",
     relatedPost: "building-serene-events",
   },
+  {
+    slug: "Deeperweave-film-history-platform",
+    title: "DeeperWeave",
+    tagline: "Watch history tracker",
+    outcome:
+        "Made a film & series watch history tracker.",
+    summary:
+        "An event management platform with real-time chat, QR-code check-in, and live admin dashboards. Built on Next.js and Firebase for real-time data sync, it gave organisers live visibility into attendance and engagement while serving thousands of attendees across events.",
+    stack: ["Next.js", "Firebase"],
+    metrics: [
+      { label: "Users served", value: "15,000+" },
+      { label: "Features", value: "Real-time chat · QR check-in" },
+      { label: "Dashboards", value: "Live admin analytics" },
+    ],
+    featured: false,
+    links: { liveUrl: "https://deeperweave.com/", repoUrl: "https://github.com/rajavenkatesh04/deeperweave" },
+    screenshot: "/projects/deeperweave.png",
+    relatedPost: "building-deeperweave",
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {

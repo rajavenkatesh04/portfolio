@@ -1,5 +1,5 @@
 ---
-title: "Building Serene Events: real-time at 15,000 users"
+title: "Building Serene Events"
 date: "2026-03-02"
 excerpt: "An event platform with real-time chat, QR-code check-in, and live admin dashboards — and what it taught me about building on real-time data at scale."
 coverImage: "/blog/serene-events.jpg"

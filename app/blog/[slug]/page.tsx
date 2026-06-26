@@ -78,11 +78,12 @@ export default async function BlogPost({ params }: Params) {
       </header>
 
       {post.coverImage && (
-        <div className="relative mt-12 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-surface-2">
+        <div className="relative mt-12 aspect-video overflow-hidden rounded-2xl border border-border bg-surface-2">
           <Image
             src={post.coverImage}
             alt={post.title}
-            fill
+            width={700}
+            height={394}
             sizes="(max-width: 768px) 100vw, 700px"
             className="object-cover"
             priority
