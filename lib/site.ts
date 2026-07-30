@@ -17,7 +17,7 @@ export const site = {
   tagline:
     "I build web apps people actually use, from a multilingual RAG system to platforms serving 20,000+ users.",
   description:
-    "Guthula Raja Venkatesh — final-year CS student and full-stack & AI developer. I build web apps people actually use, from a multilingual RAG system to high-traffic platforms.",
+    "Guthula Raja Venkatesh — recent CS graduate and full-stack & AI developer. I build web apps people actually use, from a multilingual RAG system to high-traffic platforms.",
   // Canonical production URL — used for Open Graph / absolute links.
   url: "https://rajavenkatesh.dev",
   locale: "en_US",

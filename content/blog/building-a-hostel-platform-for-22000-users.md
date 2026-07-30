@@ -1,5 +1,5 @@
 ---
-title: "Building a hostel platform for 22,000+ students"
+title: "Building a hostel platform for 22,000+ users"
 date: "2025-04-15"
 excerpt: "How a simple hostel finder evolved from a traditional database-backed application into a statically generated platform capable of serving admission-day traffic efficiently."
 coverImage: "/blog/hostels.png"

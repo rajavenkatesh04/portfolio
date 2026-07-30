@@ -71,7 +71,7 @@ export const projects: Project[] = [
     featured: false,
     links: { liveUrl: "https://hostel-livid.vercel.app/", repoUrl: "https://github.com/rajavenkatesh04/hostels" },
     screenshot: "/projects/hostels.png",
-    relatedPost: "building-a-hostel-platform-for-21000-students",
+    relatedPost: "building-a-hostel-platform-for-22000-users",
   },
   {
     slug: "serene-events-platform",

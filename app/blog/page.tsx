@@ -46,12 +46,13 @@ export default function BlogIndex() {
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.18)]"
               >
                 {/* Cover image (drop the file in public/blog/). */}
-                <div className="relative aspect-[16/9] overflow-hidden bg-surface-2">
+                <div className="relative aspect-video overflow-hidden bg-surface-2">
                   {post.coverImage && (
                     <Image
                       src={post.coverImage}
                       alt=""
                       fill
+                      loading="eager"
                       sizes="(max-width: 640px) 100vw, 50vw"
                       className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
