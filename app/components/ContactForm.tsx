@@ -66,7 +66,7 @@ export default function ContactForm({ accessKey }: { accessKey?: string }) {
   };
 
   return (
-      <div className="flex w-full min-h-[480px] flex-col rounded-2xl border border-border bg-surface-2 p-6 sm:p-8">
+      <div className="flex w-full min-h-120 flex-col rounded-2xl border border-border bg-surface-2 p-6 sm:p-8">
 
         {status === "success" || status === "error" ? (
             // --- STATUS SCREEN ---
